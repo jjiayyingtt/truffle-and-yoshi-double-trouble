@@ -1,0 +1,14 @@
+# Godot 4+ specific ignores
+.godot/
+/android/
+
+# Exported builds
+*.exe
+*.pck
+
+# Godot editor temp files
+*.tmp
+
+# Copyrighted audio kept locally only
+/assets/Delfino Plaza - Super Mario Sunshine Soundtrack.mp3*
+/assets/Mario Jump - Gaming Sound Effect (HD).mp3*

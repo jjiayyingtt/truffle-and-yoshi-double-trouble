@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://c05ivub4em6lw"]
+
+[ext_resource type="Script" uid="uid://06mxlodhim8e" path="res://scripts/tutorial_text.gd" id="1_3uon5"]
+[ext_resource type="Texture2D" uid="uid://b4dnngst76wxx" path="res://assets/energy_cell.png" id="2_1riog"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1riog"]
+
+[node name="Tutorial Text" type="Node2D"]
+script = ExtResource("1_3uon5")
+
+[node name="Label" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = -53.0
+offset_top = -40.0
+offset_right = 54.0
+offset_bottom = -25.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 10
+text = "Press \"Space\" to jump"
+horizontal_alignment = 1
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -10)
+shape = SubResource("RectangleShape2D_1riog")
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D"]
+position = Vector2(0, -10)
+texture = ExtResource("2_1riog")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

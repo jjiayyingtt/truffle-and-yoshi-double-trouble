@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://c7nslna81it4o"]
+
+[ext_resource type="Script" uid="uid://2e3oxoo3anrj" path="res://scripts/bullet.gd" id="1_qx7rs"]
+[ext_resource type="Texture2D" uid="uid://bqhi2qxambfe4" path="res://assets/enemy_bullet.png" id="2_qx7rs"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mkf8s"]
+radius = 3.0
+height = 8.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y25gk"]
+radius = 3.0
+height = 8.0
+
+[node name="Enemy Bullet" type="CharacterBody2D" groups=["enemy_damage"]]
+collision_layer = 2
+script = ExtResource("1_qx7rs")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-4.7683716e-07, 4.7683716e-07)
+scale = Vector2(0.6875, 0.6875)
+texture = ExtResource("2_qx7rs")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["enemy_damage"]]
+shape = SubResource("CapsuleShape2D_mkf8s")
+
+[node name="Area2D" type="Area2D" parent="." groups=["enemy_damage"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" groups=["enemy_damage"]]
+shape = SubResource("CapsuleShape2D_y25gk")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

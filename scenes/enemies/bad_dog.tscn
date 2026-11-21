@@ -1,0 +1,124 @@
+[gd_scene load_steps=9 format=3 uid="uid://b5pjyai4laert"]
+
+[ext_resource type="Script" uid="uid://bbwew6y6xrfmp" path="res://scripts/bad_dog.gd" id="1_qn4qs"]
+[ext_resource type="Texture2D" uid="uid://cb1ftdcrk63nq" path="res://assets/bad dog.png" id="2_bd14p"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a1412"]
+size = Vector2(14, 8.17188)
+
+[sub_resource type="Animation" id="Animation_qgkel"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(0, 16, 16, 16)]
+}
+
+[sub_resource type="Animation" id="Animation_bd14p"]
+resource_name = "fall"
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(0, 32, 16, 16)]
+}
+
+[sub_resource type="Animation" id="Animation_qn4qs"]
+resource_name = "jump"
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(0, 16, 16, 16)]
+}
+
+[sub_resource type="Animation" id="Animation_flpko"]
+resource_name = "Walk"
+length = 1.75
+loop_mode = 1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Rect2(0, 0, 16, 16), Rect2(16, 0, 16, 16), Rect2(32, 0, 16, 16), Rect2(48, 0, 16, 16), Rect2(64, 0, 16, 16), Rect2(80, 0, 16, 16), Rect2(96, 0, 16, 16), Rect2(96, 0, 16, 16)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_e8a47"]
+_data = {
+&"RESET": SubResource("Animation_qgkel"),
+&"fall": SubResource("Animation_bd14p"),
+&"jump": SubResource("Animation_qn4qs"),
+&"move": SubResource("Animation_flpko")
+}
+
+[node name="Bad Dog" type="CharacterBody2D" node_paths=PackedStringArray("animation_player", "edge_dectection", "wall_dectection") groups=["enemy"]]
+collision_layer = 2
+script = ExtResource("1_qn4qs")
+animation_player = NodePath("AnimationPlayer")
+edge_dectection = NodePath("EdgeRayCast")
+wall_dectection = NodePath("WallRayCast")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -5.17188)
+shape = SubResource("RectangleShape2D_a1412")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -8)
+texture = ExtResource("2_bd14p")
+region_enabled = true
+region_rect = Rect2(0, 16, 16, 16)
+
+[node name="Area2D" type="Area2D" parent="." groups=["enemy"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" groups=["enemy"]]
+position = Vector2(0, -5.08594)
+shape = SubResource("RectangleShape2D_a1412")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_e8a47")
+}
+speed_scale = 1.5
+
+[node name="WallRayCast" type="RayCast2D" parent="."]
+position = Vector2(3, -6)
+rotation = -1.5708
+target_position = Vector2(0, 10)
+
+[node name="EdgeRayCast" type="RayCast2D" parent="."]
+position = Vector2(7, -6)
+target_position = Vector2(0, 10)
+
+[node name="JumpTimer" type="Timer" parent="."]
+wait_time = 5.0
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
