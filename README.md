@@ -2,7 +2,7 @@
 
 A small 2D pixel-art platformer shooter made with Godot 4.5. Go on an adventure as Truffle the dog, shoot your favourite toys at the enemies in your path and take on the evil big dog at the end.
 
-![Level 1 gameplay](docs/media/gameplay.gif)
+![Title screen](docs/media/start-screen.png)
 
 ## Play
 
@@ -20,16 +20,22 @@ Download the Windows build from the [latest release](https://github.com/jjiayyin
 
 One hit from an enemy or an enemy bullet ends the run, so shoot first.
 
-## Screenshots
+## Gameplay
 
-| | |
-| --- | --- |
-| ![Start screen](docs/media/start-screen.png) | ![Level 1](docs/media/level-1.png) |
-| ![Shooting an enemy](docs/media/shooting.png) | ![Boss fight](docs/media/boss.png) |
+### Level 1
+
+![Level 1 gameplay](docs/media/gameplay.gif)
 
 ### Boss fight
 
 ![Boss fight](docs/media/boss-fight.gif)
+
+## Screenshots
+
+| | |
+| --- | --- |
+| ![Level 1](docs/media/level-1.png) | ![Shooting an enemy](docs/media/shooting.png) |
+| ![Boss fight](docs/media/boss.png) | ![You win screen](docs/media/you-win.png) |
 
 ## What's in the game
 
