@@ -1,6 +1,6 @@
 # Truffle & Yoshi: Double Trouble
 
-A small 2D pixel-art platformer shooter made with Godot 4.5. Play as Truffle the dog, jump across floating islands, shoot your way past the critters in your path and take on the boss at the end.
+A small 2D pixel-art platformer shooter made with Godot 4.5. Go on an adventure as Truffle the dog, shoot your favourite toys at the enemies in your path and take on the evil big dog at the end.
 
 ![Level 1 gameplay](docs/media/gameplay.gif)
 
